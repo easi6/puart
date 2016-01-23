@@ -30,6 +30,15 @@ class HomeController
     .catch (err) ->
       E res, err
 
+  show: FindWork (req, res, next) ->
+    co ->
+      images = yield req.work.getWorkImages()
+
+      _.extend res.locals, work: req.work, images: images
+      res.render "works/show"
+    .catch (err) ->
+      E res, err
+
 module.exports = new HomeController
 # vim: set ts=2 sw=2 :
 

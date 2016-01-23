@@ -1,0 +1,60 @@
+extend ../layout.jade
+
+block content
+  .container(style="margin-top: 30px;")
+    .row
+      .col-lg-6.col-md-6.col-sm-6
+        //- 작품 큰사진
+        .row
+          .cell.col-lg-12.col-md-12.col-sm-12.col-xs-12(style="margin-bottom: 0")
+            .elem(style="padding-bottom: 70%; margin-bottom: 0")
+              .img-wrapper
+                img(src="/img/dummy/db/201011000FF13593.jpg")
+
+        //- 작품 작은사진들
+        - var sides = ["전면", "후면", "우측", "좌측", "상세보기1", "상세보기2"]
+        - var images = ["/img/dummy/db/201011000FF13593.jpg", "/img/dummy/db/201011000BB13593.jpg", "/img/dummy/db/201011000RR13593.jpg", "/img/dummy/db/201011000LL13593.jpg", "/img/dummy/db/201011000BA13593.jpg", "http://placehold.it/200x140"]
+        .row(style="margin-left: -4px; margin-right: -4px;")
+          each side, i in sides
+            .cell.col-lg-2.col-md-3.col-sm-4.col-xs-6(style="padding-left: 4px; padding-right: 4px;")
+              .elem(style="margin-bottom: 0")
+                a.img-wrapper(href="#")
+                  img(src=images[i])
+              span=side
+
+      .col-lg-3.col-md-6.col-sm-6
+        //- 작품정보
+        .row
+          .col-md-6.col-lg-6.col-sm-6
+            dl.description
+              dt 작품명
+              dd 당신이 예술
+              dt 작가명
+              dd 최정화
+              dt 규격
+              dd 240x56x260cm
+              dt 재질
+              dd 황동(주물)
+              dt 분류
+              dd 조각
+              dt 설치일자
+              dd 2010-05-28
+          .col-md-6.col-lg-6.col-sm-6
+            dl.description
+              dt 주소
+              dd 서울 동작구 신대방동 342-41번지 일대
+              dt 건물명
+              dd 보라매 e편한세상
+
+      .col-lg-3.col-md-6.col-sm-6
+        //- 작품 설명
+        p.detail-desc
+         | 본 작품은 당신이 보는 모든 것이 예술이라는 컨셉으로 제작한 작품이다.
+         | 즉 일반 대중들에게 예술이라는 것이 특별히 대단하여 우리가 근접할 수 없는 일상생활과
+         | 동떨어진 것이 아니고 쉽고 친근한 것으로 느낄 수 있게 만들려는 의도를 가지고 있다.
+         | 작품이 놓인 위치는 단지내의 물길이 지나가는 축선 위에 놓여저 있는데, 가운데 구멍이 난 곳으로 이 충선을 따라 시야를 확장할 수 있다
+         | 이는 우리가 일상적으로 보는 풍경을 어떤 시선과 프레임으로 보는가에 따라, 다른 감정과
+         | 색다른 감흥을 느낄 수가 있음을 보여준다. 이는 본 작품의 의도가 모엇인지 확연히 보여주는
+         | 미술적 장치라고 할 수 있다.
+         | 또한 입주민들에게 작품 주위에 모여 사진을 찍고 프레임을 통해 뒷편의 인물사진을 찍는 등,
+         | 사람들이 모이고 서로 소통하는 상징화된 공간을 만들려고 하였다.
