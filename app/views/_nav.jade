@@ -1,0 +1,94 @@
+nav.navbar(role="navigation").navbar-default
+  .container-fluid
+    .navbar-header
+      a.navbar-brand(href="#")
+        h1.puart-logo puart
+      //- menu for normal screen
+      ul.nav.navbar-nav.hidden-xs
+        li
+          a(href="#")
+            strong 건축미술작품
+          ul.list-unstyled.submenu
+            li
+              a(href="/policy/policy1.html") 제도 소개
+            li
+              a(href="#") 미술작품 DB
+        li
+          a(href="#")
+            strong 기부안내
+        li
+          a(href="#")
+            strong 공공미술
+          ul.list-unstyled.submenu
+            li
+              a(href="#") ARKO 공공미술
+            li
+              a(href="#") 공공미술 자료마당
+      //- menu for mobile screen
+      ul.nav.navbar-nav.hidden.visible-xs
+        li
+          a(href="#")
+            strong 건축미술작품
+          .submenu-holder.visible-xs
+            .toggle-btn-holder
+              button(type="button")
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            ul.list-unstyled.submenu.row
+              li.col-xs-6
+                a(href="#") 제도 소개
+                ul.list-unstyled
+                  li
+                    a(href="/policy/policy0.html") 제도개요
+                  li
+                    a(href="/policy/policy1.html") 제도운영
+                  li
+                    a(href="/policy/policy2.html") 관련법령
+                  li
+                    a(href="/policy/policy3.html") 자치단체별심의신청안내
+                  li
+                    a(href="/policy/policy4.html") 미술작품 FAQ
+                  li
+                    a(href="/policy/policy5.html") 예술위원회 소개
+              li.col-xs-6
+                a(href="#") 미술작품 DB
+                ul.list-unstyled
+                  li
+                    a(href="#") 작품 조회
+                  li
+                    a(href="#") 작품분류별통계
+        li
+          a(href="#")
+            strong 기부안내
+          .submenu-holder
+            .toggle-btn-holder
+              button(type="button")
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            ul.list-unstyled.submenu.row
+              li.col-xs-6
+                a(href="#") 기부기부
+        li
+          a(href="#")
+            strong 공공미술
+          .submenu-holder
+            .toggle-btn-holder
+              button(type="button")
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            ul.list-unstyled.submenu.row
+              li.col-xs-6
+                a(href="#") ARKO 공공미술
+              li.col-xs-6
+                a(href="#") 공공미술 자료마당
+
+    .collapse.navbar-collapse.hidden-sm
+      .navbar-form.navbar-right(role="search").puart-search
+        form(method="GET" action="/db/detail.html")
+          .form-group.center-block
+            input.form-control(type="text" name="query" placeholder="작품.작가명을 입력해주세요")
+
+

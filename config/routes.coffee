@@ -32,6 +32,9 @@ module.exports = (router) ->
       controllerName = fileName.match(/(.*)_controller/)[1]
       controllers[controllerName] = require file
 
+    # === main page ===
+    router.get "/",      R("home#main")
+
     # === admin page ===
     router.get  "/admin",                            R("admin/admin#dashboard")
     router.get  "/admin/dashboard",                  R("admin/admin#dashboard")

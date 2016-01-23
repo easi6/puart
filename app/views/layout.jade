@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title 공공미술
+    link(rel="stylesheet",type="text/css",href="/css/bootstrap.css")
+    link(rel="stylesheet",type="text/css",href="/css/navbar.css")
+    link(rel="stylesheet",type="text/css",href="/css/main.css")
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    script(src="/bower/jquery/dist/jquery.min.js")
+    script(src="/js/nav.js")
+
+  body
+    include ./_nav.jade
+    //- index page just contains the single image as a background
+    block content
+
