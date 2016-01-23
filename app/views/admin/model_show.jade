@@ -1,0 +1,39 @@
+extend ./layout.jade
+
+block content
+  .row
+    .col-lg-12
+      h1.page-header
+        | #{inflection.capitalize(model.name)}##{record.id || record.getDataValue(model.primaryKeyAttributes[0])}
+      include ./breadcrumb.jade
+    .col-lg-12
+      dl.dl-horizontal
+        each val, key in record.Model.rawAttributes
+          dt= key
+          dd
+            - var value = record.getDataValue(key)
+            if typeof value !== "undefined" && value !== null
+              | #{value}
+            else
+              span.text-muted NULL
+    if model.name === "User"
+      .col-lg-12
+        p
+          | 기업용 웹툴 홍보메일 발송
+          br
+          if !!record.NoticeCheck
+            span 마지막 발송시각 - #{moment(record.NoticeCheck.created_at).format()}
+          else
+            span.text-muted 보낸적 없음
+        form(action="/admin/promotion_email" method="POST" onsubmit="return confirm('are you sure?')")
+          input(type="hidden", name="uids", value=record.id)
+          input.btn.btn-primary(type="submit", value="발송")
+    else
+      .col-lg-12
+        a.btn.btn-primary(href="/admin/#{model.tableName}/#{record.id}/edit") Edit
+        | &nbsp;|&nbsp;
+        form(action="/admin/#{model.tableName}/#{record.id}/destroy" method="POST" onsubmit="return confirm('are you sure?')" style="display: inline-block;")
+          input.btn.btn-danger.btn-small(type="submit", value="Delete")
+
+
+

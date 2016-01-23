@@ -37,3 +37,13 @@ module.exports = (router) ->
     router.get  "/admin/dashboard",                  R("admin/admin#dashboard")
     router.get  "/admin/login",                      R("admin/admin#login")
     router.post "/admin/login",                      PassportService.authenticate("admin-local", { successRedirect: "/admin", failureRedirect: "/admin/login", failureFlash: true})
+
+    router.get  "/admin/:model_name",                R("admin/admin#model_list")
+    router.get  "/admin/:model_name/new",            R("admin/admin#model_new")
+    router.get  "/admin/:model_name/:id",            R("admin/admin#model_show")
+    router.post "/admin/:model_name",                R("admin/admin#model_create")
+    router.get  "/admin/:model_name/:id/edit",       R("admin/admin#model_edit")
+    router.post "/admin/:model_name/:id/update",     R("admin/admin#model_update")
+    router.put  "/admin/:model_name/:id",            R("admin/admin#model_update")
+    router.post "/admin/:model_name/:id/destroy",    R("admin/admin#model_delete")
+    router.delete "/admin/:model_name/:id",          R("admin/admin#model_delete")

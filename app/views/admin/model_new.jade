@@ -1,0 +1,9 @@
+extend ./layout.jade
+
+block content
+  .row
+    .col-lg-12
+      h1.page-header
+        | New #{inflection.capitalize(model.name)}
+      include ./breadcrumb.jade
+  include ./form.jade

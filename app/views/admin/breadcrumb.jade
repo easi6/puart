@@ -1,0 +1,13 @@
+ol.breadcrumb
+  li
+    a(href="/admin/dashboard") 
+      i.fa.fa-dashboard Dashboard
+  li(class="#{record ? '' : 'active'}")
+    - var fa_class="fa fa-" + (model.name == 'User' ? 'users' : model.name == 'Trip' ? 'suitcase' : model.name == 'Driver' ? 'user-secret' : model.name == 'Van' ? 'bus' : model.name == 'LocationInfo' ? 'map-marker' : '');
+    if record
+      a(href="/admin/#{model.tableName}")
+        i(class=fa_class) #{inflection.capitalize(model.name)}
+    else
+      i(class=fa_class) #{inflection.capitalize(model.name)}
+  if record
+    li.active #{path.match(/new$/) ? 'New' : path.match(/edit$/) ? 'Edit' : (model.name + '#' + (record.id || record.getDataValue(model.primaryKeyAttributes[0]))) }

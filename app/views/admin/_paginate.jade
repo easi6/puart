@@ -1,0 +1,24 @@
+nav
+  - var page = 1
+  ul.pagination
+    if paginate.hasPreviousPages
+      li
+        a(href=paginate.href(true)) &laquo;
+    else
+      li.disabled
+        a &laquo;
+    - var pages = paginate.getArrayPages(5, total_page, paginate.page)
+    each page in pages
+      li(class="#{paginate.page == page.number ? 'active': ''}")
+        if paginate.page == page.number
+          a=page.number
+        else
+          a(href=page.url)= page.number
+    if paginate.hasNextPages(total_page)
+      li
+        a(href=paginate.href()) &raquo;
+    else
+      li.disabled
+        a &raquo;
+
+

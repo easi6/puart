@@ -43,8 +43,8 @@ app.use bodyparser.json()
 app.use cookieParser "easi6 easiway"
 app.use session
   saveUninitialized: true
-  resave: false
-  secret: "easishare"
+  resave: true
+  secret: "puart"
 
 app.use (req, res, next) ->
   # change old res.end, res.write with new ones for response logging

@@ -1,0 +1,89 @@
+extend ./layout.jade
+
+block content
+  .row
+    .col-lg-12
+      h1.page-header
+        | Listing #{inflection.capitalize(inflection.pluralize(model.name))}
+      include ./breadcrumb.jade
+  .row
+    .col-lg-12
+      .table-responsive
+        table.table-hover.table.table-striped
+          thead
+            tr
+              each val, key in model.rawAttributes
+                if (key !== "password_hashed" && timestamps.indexOf(key) == -1 && key !== "raw_response" && key !== "raw_response_refund")
+                  th #{key}
+              th timestamp
+              th action
+            each record in records
+              tr
+                each val, key in model.rawAttributes
+                  if (key !== "password_hashed" && timestamps.indexOf(key) == -1 && key !== "raw_response" && key !== "raw_response_refund")
+                    if (key === "id")
+                      td
+                        a(href="/admin/#{model.tableName}/#{record.id || record.getDataValue(model.primaryKeyAttributes[0])}") #{record.id}
+                    else if (record.getDataValue(key) == null)
+                      td.text-muted NULL
+                    else if (key == "file")
+                      td
+                        a(href="/#{record.getDataValue(key)}")
+                          i.fa.fa-2x.fa-fw.fa-file-sound-o
+                    else if (key == "status")
+                      - var t = record.getDataValue(key)
+                      td #{record.status_en}(#{t})
+                    else if (val["type"] == "DATETIME")
+                      td #{moment(record.getDataValue(key)).format("YYYY-MM-D HH:mm Z")}
+                    else if (val["type"] == "VARCHAR")
+                      td #{ellipsize(record.getDataValue(key))}
+                    else
+                      td #{record.getDataValue(key)}
+                td
+                  each key in timestamps
+                    div #{moment(record.getDataValue(key)).format("YYYY-MM-D HH:mm Z")}
+                td
+                  a(href="/admin/#{model.tableName}/#{record.id || record.getDataValue(model.primaryKeyAttributes[0])}")
+                    i.fa-eye.fa.fa-fw
+                    span show
+                  if (model.tableName != 'users')
+                    a(href="/admin/#{model.tableName}/#{record.id || record.getDataValue(model.primaryKeyAttributes[0])}/edit")
+                      i.fa-edit.fa.fa-fw
+                      span edit
+                  //-| &nbsp;
+                  //-a.delete(href="/admin/#{model.tableName}/#{record.id || record.getDataValue(model.primaryKeyAttributes[0])}")
+                    //-i.fa-trash-o.fa.fa-fw
+                  //-| &nbsp;
+
+  if model.tableName !== "vans"
+    .row
+      .col-lg-2.col-lg-offset-10
+        a(href="/admin/#{model.tableName}/new")
+          i.fa.fa-fw.fa-plus
+          | New #{model.name}
+
+  .row
+    .col-lg-12
+      include _paginate
+  script.
+    $(function() {
+      $("a.delete").click(function(e) {
+        if (confirm("Are you sure?")) {
+          var url = $(this).attr('href');
+          console.log("DELETE " + url);
+
+          var form = $("<form>", {
+                       'method': 'POST',
+                       'action': url});
+          var hiddenInput = $("<input>", {
+                      'type': 'hidden',
+                      'name': '_method',
+                      'value': 'DELETE'});
+          form.append(hiddenInput).appendTo('body');
+
+          form.submit();
+          e.preventDefault();
+        }
+        return false;
+      });
+    });

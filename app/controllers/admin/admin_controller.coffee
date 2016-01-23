@@ -66,7 +66,8 @@ class AdminController
                model: Model, records: records, inflection: inflection
                moment: moment, ellipsize: ellipsize, timestamps: timestamp_attrs
                total_page: _page_count, req: req
-      res.end _templates.model_list res.locals
+
+      res.render "admin/model_list"
     .catch (err) ->
       E res, err
 
@@ -82,7 +83,8 @@ class AdminController
       _.extend res.locals,
                record: record, model: Model, moment: moment
                ellipsize: ellipsize, inflection: inflection, req: req
-      res.end _templates.model_show res.locals
+
+      res.render "admin/model_show"
     .catch (err) ->
       E(res, err)
 
@@ -95,7 +97,7 @@ class AdminController
                model: Model, record: record, moment: moment
                ellipsize: ellipsize, inflection: inflection, req: req
 
-      res.end _templates.model_new res.locals
+      res.render "admin/model_new"
     .catch (err) ->
       E res, err
 
@@ -129,7 +131,7 @@ class AdminController
                model: Model, record: record, moment: moment
                ellipsize: ellipsize, inflection: inflection, req: req
 
-      res.end _templates.model_edit res.locals
+      res.render "admin/model_edit"
     .catch (err) ->
       E(res, err)
 
