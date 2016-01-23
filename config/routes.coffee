@@ -35,6 +35,9 @@ module.exports = (router) ->
     # === main page ===
     router.get "/",      R("home#main")
 
+    # === works db page ===
+    router.get "/works", R("works#index")
+
     # === admin page ===
     router.get  "/admin",                            R("admin/admin#dashboard")
     router.get  "/admin/dashboard",                  R("admin/admin#dashboard")

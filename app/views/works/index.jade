@@ -1,0 +1,19 @@
+extend ../layout.jade
+
+block content
+  .container(style="margin-top: 30px;")
+    .row
+      - var titles = ["당신이 예술", "Dream Tower", "Fruits Tower", "꽃과 나비", "Flower tree", "꽃의 마음", "과일나무"]
+      - var dates = ["2010. 5. 28", "2009. 7. 1", "2010. 3. 9", "2007. 1. 22", "2008. 4. 26", "2006. 12. 6", "2005. 7. 1"]
+      - var places = ["서울 동작구", "대구 수성구", "서울 중구", "서울 광진구", "경남 창원시", "충남 천안시", "서울 중구"]
+      - var images = ["/img/dummy/db/201011000FF13593.jpg", "/img/dummy/db/200927260FF13468.jpg", "/img/dummy/db/201011140FF13274.jpg", "/img/dummy/db/200711215FF12217.jpg", "/img/dummy/db/200848110FF12020.jpg", "/img/dummy/db/200644130FF1862.jpg", "/img/dummy/db/200511000FF668.jpg"]
+      - var author = "최정화"
+      - var category = "조각"
+      each title, i in titles
+        .cell.col-lg-3.col-md-4.col-sm-6.col-xs-12
+          .elem
+            a.img-wrapper(href="/db/detail.html")
+              img(src=images[i])
+          h5.author #{category + ", " + titles[i] + ", " + author}
+          h6.placetime #{places[i] + ", " + dates[i]}
+
