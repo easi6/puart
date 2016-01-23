@@ -1,0 +1,24 @@
+extend ./layout.jade
+
+block content
+  .row
+    .col-lg-12
+      h1.page-header
+        | Login
+  .row
+    form.form-horizontal(action="/admin/login" method="post" role="form")
+      .form-group
+        label.col-sm-2.control-label Username
+        .col-sm-6
+          input.form-control(type="text" name="username")
+      .form-group
+        label.col-sm-2.control-label Password
+        .col-sm-6
+          input.form-control(type="password" name="password")
+      if message.length > 0
+        .form-group
+          p(style="padding: 15px;").col-sm-offset-2.col-sm-6.alert.alert-danger #{message}
+      .form-group
+        .col-sm-offset-2.col-sm-6
+          input.btn.btn-default(type="submit" value="Log In")
+

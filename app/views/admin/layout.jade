@@ -1,0 +1,173 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Easiway Admin
+    // Bootstrap Core CSS 
+    link(href='/admin/css/bootstrap.min.css', rel='stylesheet')
+    // Custom CSS 
+    link(href='/admin/css/sb-admin.css', rel='stylesheet')
+    // Custom Fonts 
+    link(href='/bower/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    link(href='/bower/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css', rel='stylesheet', type='text/css')
+    // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries 
+    // WARNING: Respond.js doesn't work if you view the page via file:// 
+    <!--[if lt IE 9]>
+    script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+    script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    <![endif]-->
+    link(rel="icon" type="image/png" href="/admin/img/favicon/favicon-32x32.png" sizes="32x32")
+    link(rel="icon" type="image/png" href="/admin/img/favicon/android-chrome-192x192.png" sizes="192x192")
+    link(rel="icon" type="image/png" href="/admin/img/favicon/favicon-96x96.png" sizes="96x96")
+    link(rel="icon" type="image/png" href="/admin/img/favicon/favicon-16x16.png" sizes="16x16")
+
+    // jQuery 
+    script(src='/admin/js/jquery.js')
+    script(src="/bower/moment/min/moment.min.js")
+  body
+    #wrapper
+      // Navigation 
+      nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+        // Brand and toggle get grouped for better mobile display 
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/admin') PUART Admin
+        // Top Menu Items 
+        ul.nav.navbar-right.top-nav
+          li.dropdown
+            a.dropdown-toggle(href='#', data-toggle='dropdown')
+              i.fa.fa-envelope
+              b.caret
+            ul.dropdown-menu.message-dropdown
+              li.message-preview
+                a(href='#')
+                  .media
+                    span.pull-left
+                      img.media-object(src='http://placehold.it/50x50', alt='')
+                    .media-body
+                      h5.media-heading
+                        strong John Smith
+                      p.small.text-muted
+                        i.fa.fa-clock-o
+                        | Yesterday at 4:32 PM
+                      p Lorem ipsum dolor sit amet, consectetur...
+              li.message-preview
+                a(href='#')
+                  .media
+                    span.pull-left
+                      img.media-object(src='http://placehold.it/50x50', alt='')
+                    .media-body
+                      h5.media-heading
+                        strong John Smith
+                      p.small.text-muted
+                        i.fa.fa-clock-o
+                        | Yesterday at 4:32 PM
+                      p Lorem ipsum dolor sit amet, consectetur...
+              li.message-preview
+                a(href='#')
+                  .media
+                    span.pull-left
+                      img.media-object(src='http://placehold.it/50x50', alt='')
+                    .media-body
+                      h5.media-heading
+                        strong John Smith
+                      p.small.text-muted
+                        i.fa.fa-clock-o
+                        | Yesterday at 4:32 PM
+                      p Lorem ipsum dolor sit amet, consectetur...
+              li.message-footer
+                a(href='#') Read All New Messages
+          li.dropdown
+            a.dropdown-toggle(href='#', data-toggle='dropdown')
+              i.fa.fa-bell
+              b.caret
+            ul.dropdown-menu.alert-dropdown
+              li
+                a(href='#')
+                  | Alert Name
+                  span.label.label-default Alert Badge
+              li
+                a(href='#')
+                  | Alert Name
+                  span.label.label-primary Alert Badge
+              li
+                a(href='#')
+                  | Alert Name
+                  span.label.label-success Alert Badge
+              li
+                a(href='#')
+                  | Alert Name
+                  span.label.label-info Alert Badge
+              li
+                a(href='#')
+                  | Alert Name
+                  span.label.label-warning Alert Badge
+              li
+                a(href='#')
+                  | Alert Name
+                  span.label.label-danger Alert Badge
+              li.divider
+              li
+                a(href='#') View All
+          li.dropdown
+            a.dropdown-toggle(href='#', data-toggle='dropdown')
+              i.fa.fa-user
+              | John Smith
+              b.caret
+            ul.dropdown-menu
+              li
+                a(href='#')
+                  i.fa.fa-fw.fa-user
+                  | Profile
+              li
+                a(href='#')
+                  i.fa.fa-fw.fa-envelope
+                  | Inbox
+              li
+                a(href='#')
+                  i.fa.fa-fw.fa-gear
+                  | Settings
+              li.divider
+              li
+                a(href='#')
+                  i.fa.fa-fw.fa-power-off
+                  | Log Out
+        // Sidebar Menu Items - These collapse to the responsive navigation menu on small screens 
+        .collapse.navbar-collapse.navbar-ex1-collapse
+          ul.nav.navbar-nav.side-nav
+            li(class="#{path == '/admin/dashboard' ? 'active' : ''}")
+              a(href='/admin/dashboard')
+                i.fa.fa-fw.fa-dashboard
+                | Dashboard
+            li(class="#{model && model.name == 'Statistic' ? 'active' : ''}")
+              a(href='/admin/statistics')
+                i.fa.fa-fw.fa-line-chart
+                | Statistics
+            li(class="#{model && model.name == 'Artist' ? 'active' : ''}")
+              a(href='/admin/artists')
+                i.fa.fa-fw.fa-users
+                | Artists
+            li(class="#{model && model.name == 'Work' ? 'active' : ''}")
+              a(href='/admin/works')
+                i.fa.fa-fw.fa-paint-brush
+                | Works
+        // /.navbar-collapse 
+      #page-wrapper
+        .container-fluid
+          block content
+          // /.row 
+        // /.container-fluid 
+      // /#page-wrapper 
+    // /#wrapper 
+    // Bootstrap Core JavaScript 
+    script(src='/admin/js/bootstrap.min.js')
+
+

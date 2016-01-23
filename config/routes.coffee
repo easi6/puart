@@ -32,3 +32,8 @@ module.exports = (router) ->
       controllerName = fileName.match(/(.*)_controller/)[1]
       controllers[controllerName] = require file
 
+    # === admin page ===
+    router.get  "/admin",                            R("admin/admin#dashboard")
+    router.get  "/admin/dashboard",                  R("admin/admin#dashboard")
+    router.get  "/admin/login",                      R("admin/admin#login")
+    router.post "/admin/login",                      PassportService.authenticate("admin-local", { successRedirect: "/admin", failureRedirect: "/admin/login", failureFlash: true})

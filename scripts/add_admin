@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+echo -n "db user: "
+read dbuser
+
+echo -n "db password: "
+read -s dbpwd
+echo
+
+echo -n "db name: "
+read dbname
+
+echo -n "username: "
+read username
+
+while [ -z "$password" ] || [ "$password" != "$password_confirm" ]
+do
+  echo -n "password: "
+  read -s password
+  echo
+
+  echo -n "password confirm: "
+  read -s password_confirm
+  echo
+done
+
+hashed_pwd=$(node -e "var bcrypt=require('bcrypt'); console.log(bcrypt.hashSync('$password', bcrypt.genSaltSync()));")
+query="INSERT INTO admins (username, password_hashed, created_at, updated_at) values ('$username', '$hashed_pwd', now(), now());"
+
+echo $query
+echo $query | mysql -u$dbuser -p$dbpwd $dbname

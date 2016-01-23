@@ -3,3 +3,4 @@ logs/*
 .server.development.pid
 config/local.json
 config/runtime.json
+app/assets/bower_components
