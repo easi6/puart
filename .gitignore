@@ -1,0 +1,5 @@
+node_modules
+logs/*
+.server.development.pid
+config/local.json
+config/runtime.json

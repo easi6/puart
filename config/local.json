@@ -1,0 +1,14 @@
+{
+//log appender setup
+  "winston": {
+    "transports": [{
+      "type": "DailyRotateFile",
+      "level": "debug",
+      "filename": "./logs/all.log",
+      "handleExceptions": true,
+      "json": false,
+      "maxsize": 104857600,
+      "colorize": false
+    }]
+  }
+}

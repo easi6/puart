@@ -1,0 +1,24 @@
+{
+  "development": {
+    "dialect": "mysql",
+    "host": "127.0.0.1",
+    "database": "drh_puart_development",
+    "username": "drh",
+    "password": "gkswoghk"
+  },
+  "test": {
+    "username": "drh",
+    "password": "gkswoghk",
+    "database": "drh_puart_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "drh",
+    "password": "gkswoghk",
+    "database": "drh_puart_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
+
