@@ -1,0 +1,10 @@
+extend ../layout.jade
+
+block content
+  .row
+    .col-lg-12
+      h1.page-header
+        | Editing Work##{work.id}
+      include ../breadcrumb.jade
+  include ./_form.jade
+

@@ -9,11 +9,11 @@ block content
       - var images = ["/img/dummy/db/201011000FF13593.jpg", "/img/dummy/db/200927260FF13468.jpg", "/img/dummy/db/201011140FF13274.jpg", "/img/dummy/db/200711215FF12217.jpg", "/img/dummy/db/200848110FF12020.jpg", "/img/dummy/db/200644130FF1862.jpg", "/img/dummy/db/200511000FF668.jpg"]
       - var author = "최정화"
       - var category = "조각"
-      each title, i in titles
+      each work in works
         .cell.col-lg-3.col-md-4.col-sm-6.col-xs-12
           .elem
-            a.img-wrapper(href="/db/detail.html")
-              img(src=images[i])
-          h5.author #{category + ", " + titles[i] + ", " + author}
-          h6.placetime #{places[i] + ", " + dates[i]}
+            a.img-wrapper(href="/works/#{work.id}")
+              img(src=work.featuredImage.path)
+          h5.author #{work.category + ", " + work.title + ", " + work.Artist.name}
+          h6.placetime #{work.place + ", " + moment(work.date).format("YYYY-MM-DD")}
 

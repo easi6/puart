@@ -1,0 +1,55 @@
+extend ../layout.jade
+
+block content
+  .row
+    .col-lg-12
+      h1.page-header
+        | Listing Works
+      include ../breadcrumb.jade
+  .row
+    .col-lg-12
+      .table-responsive
+        table.table-hover.table.table-striped
+          thead
+            tr
+              th id
+              th title
+              th date
+              th place
+              th category
+              th timestamp
+              th action
+            each work in works
+              tr
+                td
+                  a(href="/admin/works/#{work.id}")=work.id
+                td
+                  a(href="/admin/works/#{work.id}")=work.title
+                td= moment(work.date).format("YYYY-MM-DD")
+                td= work.place
+                td= work.category
+                td
+                  div #{moment(work.created_at).format("YYYY-MM-D HH:mm Z")}
+                  div #{moment(work.updated_at).format("YYYY-MM-D HH:mm Z")}
+                td
+                  a(href="/admin/works/#{work.id}/edit")
+                    i.fa-edit.fa.fa-fw
+                    span edit
+                  form(method="POST" action="/admin/works/#{work.id}/destroy" onsubmit="return confirm('are you sure?')" style="display: inline-block;")
+                    button.btn.btn-link(type="submit" value="")
+                      i.fa-trash-o.fa.fa-fw
+                      | delete
+                  //-a.delete(href="/admin/#{model.tableName}/#{record.id || record.getDataValue(model.primaryKeyAttributes[0])}")
+                    //-i.fa-trash-o.fa.fa-fw
+                  //-| &nbsp;
+
+  .row
+    .col-lg-2.col-lg-offset-10
+      a(href="/admin/#{model.tableName}/new")
+        i.fa.fa-fw.fa-plus
+        | New #{model.name}
+
+  .row
+    .col-lg-12
+      include ../_paginate
+

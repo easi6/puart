@@ -23,8 +23,11 @@ class HomeController
       works = yield db.Work.findAll
         limit: per_page
         offset: (page-1)*per_page
+        include: [{model: db.WorkImage, as:"featuredImage"}, {model: db.Artist}]
 
-      _.extend res.locals, works: works
+      logger.verbose "works.length=#{works.length}"
+
+      _.extend res.locals, works: works, moment: moment
       res.render "works/index"
 
     .catch (err) ->
@@ -33,8 +36,11 @@ class HomeController
   show: FindWork (req, res, next) ->
     co ->
       images = yield req.work.getWorkImages()
+      artist = yield req.work.getArtist()
 
-      _.extend res.locals, work: req.work, images: images
+      _.extend res.locals,
+        work: req.work, images: images, moment: moment,
+        artist: artist
       res.render "works/show"
     .catch (err) ->
       E res, err

@@ -28,33 +28,25 @@ block content
           .col-md-6.col-lg-6.col-sm-6
             dl.description
               dt 작품명
-              dd 당신이 예술
+              dd= work.title
               dt 작가명
-              dd 최정화
+              dd= artist.name
               dt 규격
-              dd 240x56x260cm
+              dd= work.dimension
               dt 재질
-              dd 황동(주물)
+              dd= work.material
               dt 분류
-              dd 조각
+              dd= work.category
               dt 설치일자
-              dd 2010-05-28
+              dd= moment(work.date).format("YYYY-MM-DD")
           .col-md-6.col-lg-6.col-sm-6
             dl.description
               dt 주소
-              dd 서울 동작구 신대방동 342-41번지 일대
+              dd= work.place
               dt 건물명
               dd 보라매 e편한세상
 
       .col-lg-3.col-md-6.col-sm-6
         //- 작품 설명
         p.detail-desc
-         | 본 작품은 당신이 보는 모든 것이 예술이라는 컨셉으로 제작한 작품이다.
-         | 즉 일반 대중들에게 예술이라는 것이 특별히 대단하여 우리가 근접할 수 없는 일상생활과
-         | 동떨어진 것이 아니고 쉽고 친근한 것으로 느낄 수 있게 만들려는 의도를 가지고 있다.
-         | 작품이 놓인 위치는 단지내의 물길이 지나가는 축선 위에 놓여저 있는데, 가운데 구멍이 난 곳으로 이 충선을 따라 시야를 확장할 수 있다
-         | 이는 우리가 일상적으로 보는 풍경을 어떤 시선과 프레임으로 보는가에 따라, 다른 감정과
-         | 색다른 감흥을 느낄 수가 있음을 보여준다. 이는 본 작품의 의도가 모엇인지 확연히 보여주는
-         | 미술적 장치라고 할 수 있다.
-         | 또한 입주민들에게 작품 주위에 모여 사진을 찍고 프레임을 통해 뒷편의 인물사진을 찍는 등,
-         | 사람들이 모이고 서로 소통하는 상징화된 공간을 만들려고 하였다.
+         = work.description

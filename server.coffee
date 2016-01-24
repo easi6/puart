@@ -109,11 +109,7 @@ force_sync = process.env.NDOE_ENV == 'test'
 db
   .sequelize
   .sync(force: force_sync)
-  .complete (err) ->
-    if err?
-      console.dir err
-      throw err[0]
-
+  .then ->
     # load initializers
     files = glob.sync "#{RootPath}/config/initializers/*.coffee"
     files.forEach (file) ->
@@ -162,5 +158,8 @@ db
     fs.writeSync pidfd, process.pid
     fs.closeSync pidfd
     logger.verbose "pid is written to #{pidpath}"
+  .catch (err) ->
+    console.dir err
+    throw err
 
 # vim: set ts=2 sw=2:

@@ -1,0 +1,39 @@
+extend ../layout.jade
+
+block content
+  .row
+    .col-lg-12
+      h1.page-header
+        | Work##{work.id}
+      include ../breadcrumb.jade
+    .col-lg-5
+      dl.dl-horizontal
+        dt id
+        dd= work.id
+        dt title
+        dd= work.title
+        dt place
+        dd= work.place
+        dt material
+        dd= work.material
+        dt dimension
+        dd= work.dimension
+        dt category
+        dd= work.category
+        dt date
+        dd= moment(work.date).format("YYYY-MM-DD")
+    .col-lg-7
+      .row
+        each work_image in work_images
+          .col-lg-4
+            img(src=work_image.thumb_path)
+
+    .col-lg-12
+      a.btn.btn-primary(href="/admin/#{model.tableName}/#{record.id}/edit") Edit
+      | &nbsp;|&nbsp;
+      form(action="/admin/#{model.tableName}/#{record.id}/destroy" method="POST" onsubmit="return confirm('are you sure?')" style="display: inline-block;")
+        input.btn.btn-danger.btn-small(type="submit", value="Delete")
+
+
+
+

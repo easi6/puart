@@ -40,11 +40,29 @@ module.exports = (router) ->
     router.get "/works/:id", R("works#show")
 
     # === admin page ===
-    router.get  "/admin",                            R("admin/admin#dashboard")
-    router.get  "/admin/dashboard",                  R("admin/admin#dashboard")
-    router.get  "/admin/login",                      R("admin/admin#login")
-    router.post "/admin/login",                      PassportService.authenticate("admin-local", { successRedirect: "/admin", failureRedirect: "/admin/login", failureFlash: true})
+    router.get  "/admin",           R("admin/admin#dashboard")
+    router.get  "/admin/dashboard", R("admin/admin#dashboard")
+    router.get  "/admin/login",     R("admin/admin#login")
+    router.post "/admin/login",     PassportService.authenticate("admin-local", 
+      {
+        successRedirect: "/admin",
+        failureRedirect: "/admin/login",
+        failureFlash: true
+      })
 
+
+    # === works management ===
+    router.get  "/admin/works",             R("admin/works#index")
+    router.get  "/admin/works/new",         R("admin/works#new")
+    router.post "/admin/works/upload_images",R("admin/works#upload_images")
+    router.post "/admin/works/delete_images",R("admin/works#delete_images")
+    router.post "/admin/works",             R("admin/works#create")
+    router.get  "/admin/works/:id",         R("admin/works#show")
+    router.get  "/admin/works/:id/edit",    R("admin/works#edit")
+    router.post "/admin/works/:id/update",  R("admin/works#update")
+    router.post "/admin/works/:id/destroy", R("admin/works#destroy")
+
+    # === model admin fallback ===
     router.get  "/admin/:model_name",                R("admin/admin#model_list")
     router.get  "/admin/:model_name/new",            R("admin/admin#model_new")
     router.get  "/admin/:model_name/:id",            R("admin/admin#model_show")
