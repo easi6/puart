@@ -1,0 +1,16 @@
+mixin left_nav(active)
+  ul.list-unstyled.left-nav
+    li
+      a(href="#") 제도소개
+      ul.list-unstyled.left-subnav
+        each str, index in ["제도개요", "제도운영", "관련법령", "자치단체별심의신청안내", "미술작품FAQ", "예술위원회소개"]
+          li
+            a(href="/policies/#{index}" class="#{active == index ? 'active': ''}") !{str}
+    li
+      a(href="#") 미술작품 DB
+      ul.list-unstyled.left-subnav
+        li
+          a(href="#") 작품 조회
+        li
+          a(href="#") 작품분류별통계
+

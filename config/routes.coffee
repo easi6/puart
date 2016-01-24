@@ -33,7 +33,8 @@ module.exports = (router) ->
       controllers[controllerName] = require file
 
     # === main page ===
-    router.get "/",      R("home#main")
+    router.get "/",         R("home#main")
+    router.get "/policies/:id", R("home#policies")
 
     # === works db page ===
     router.get "/works",        R("works#index")

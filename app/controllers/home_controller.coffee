@@ -18,6 +18,9 @@ class HomeController
   main: (req, res, next) ->
     res.render "index"
 
+  policies: (req, res) ->
+    res.render "policy/policy#{req.params.id}"
+
 module.exports = new HomeController
 # vim: set ts=2 sw=2 :
 
