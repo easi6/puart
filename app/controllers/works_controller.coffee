@@ -36,12 +36,29 @@ class HomeController
   show: FindWork (req, res, next) ->
     co ->
       images = yield req.work.getWorkImages()
+      featured_image = yield req.work.getFeaturedImage()
       artist = yield req.work.getArtist()
 
       _.extend res.locals,
         work: req.work, images: images, moment: moment,
-        artist: artist
+        artist: artist, featured_image: featured_image
       res.render "works/show"
+    .catch (err) ->
+      E res, err
+
+  search: (req, res) ->
+    co ->
+      artists = yield db.Artist.findAll(where: name: $like: "%#{req.query.query}%")
+      artist_ids = artists.map (a) -> a.id
+      works = yield db.Work.findAll
+        where: $or: [
+          {title: $like: "%#{req.query.query}%"},
+          {artist_id: artist_ids}
+        ]
+        include: [{model: db.WorkImage, as:"featuredImage"}, {model: db.Artist}]
+
+      _.extend res.locals, works: works, moment: moment
+      res.render "works/index"
     .catch (err) ->
       E res, err
 

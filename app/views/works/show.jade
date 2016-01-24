@@ -9,17 +9,19 @@ block content
           .cell.col-lg-12.col-md-12.col-sm-12.col-xs-12(style="margin-bottom: 0")
             .elem(style="padding-bottom: 70%; margin-bottom: 0")
               .img-wrapper
-                img(src="/img/dummy/db/201011000FF13593.jpg")
+                img(src=featured_image.path)
 
         //- 작품 작은사진들
         - var sides = ["전면", "후면", "우측", "좌측", "상세보기1", "상세보기2"]
-        - var images = ["/img/dummy/db/201011000FF13593.jpg", "/img/dummy/db/201011000BB13593.jpg", "/img/dummy/db/201011000RR13593.jpg", "/img/dummy/db/201011000LL13593.jpg", "/img/dummy/db/201011000BA13593.jpg", "http://placehold.it/200x140"]
         .row(style="margin-left: -4px; margin-right: -4px;")
           each side, i in sides
             .cell.col-lg-2.col-md-3.col-sm-4.col-xs-6(style="padding-left: 4px; padding-right: 4px;")
               .elem(style="margin-bottom: 0")
                 a.img-wrapper(href="#")
-                  img(src=images[i])
+                  if images[i]
+                    img(src=images[i].path)
+                  else
+                    img(src="http://placehold.it/200x140")
               span=side
 
       .col-lg-3.col-md-6.col-sm-6
@@ -44,7 +46,7 @@ block content
               dt 주소
               dd= work.place
               dt 건물명
-              dd 보라매 e편한세상
+              dd 건물명정보
 
       .col-lg-3.col-md-6.col-sm-6
         //- 작품 설명
